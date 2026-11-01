@@ -124,3 +124,52 @@ test("site.js writes the current year into every [data-current-year]", async () 
   const year = String(new Date().getFullYear());
   for (const el of yearEls) assert.equal(el.textContent, year);
 });
+
+// Home page (/): the claim, the mission statement and the teasers that lead
+// to the EquiCube, Über uns and Kontakt pages - without repeating their content.
+function homeMain() {
+  const m = read("index.html").match(/<main\b[^>]*>([\s\S]*?)<\/main>/);
+  assert.ok(m, "index.html has no <main>");
+  return m[1];
+}
+
+test("index.html: main shows the claim, the mission and the call to action", () => {
+  const main = homeMain();
+  assert.match(main, /<p class="claim">smarte energie – fair verteilte KI<\/p>/);
+  assert.match(main, /<section class="mission"[\s\S]*?<p class="statement">„Wir bringen Wärme, Strom und Rechenleistung unter ein Dach/);
+  assert.match(main, /<h2[^>]*>Neugierig geworden\?/);
+});
+
+test("index.html: main links lead to EquiCube, Über uns and Kontakt", () => {
+  const main = homeMain();
+  const links = [...main.matchAll(/<a\b[^>]*\bhref="([^"]*)"[^>]*>([^<]*)<\/a>/g)].map((m) => [
+    m[1],
+    m[2].trim(),
+  ]);
+  assert.deepEqual(links, [
+    ["/equicube/", "Den EquiCube ansehen"],
+    ["/equicube/", "Mehr zum EquiCube →"],
+    ["/ueber-uns/", "Die Crew kennenlernen →"],
+    ["/kontakt/", "Kontakt aufnehmen"],
+  ]);
+});
+
+test("index.html: main has the cube renderings with German alt text", () => {
+  const imgs = [...homeMain().matchAll(/<img\b[^>]*>/g)].map((m) => m[0]);
+  assert.equal(imgs.length, 2);
+  for (const img of imgs) {
+    assert.match(img, /\balt="Der [^"]*EquiCube[^"]*"/);
+    assert.match(img, /\bwidth="\d+"/);
+    assert.match(img, /\bheight="\d+"/);
+  }
+  assert.ok(!/loading="lazy"/.test(imgs[0]), "the hero image is on the first screen");
+  assert.match(imgs[1], /loading="lazy"/);
+});
+
+test("index.html: main repeats neither the form, the founder cards nor the feature list", () => {
+  const main = homeMain();
+  assert.ok(!/<form\b/.test(main), "no contact form on the home page");
+  assert.ok(!/<(?:input|textarea|button)\b/.test(main), "no form fields on the home page");
+  assert.ok(!/class="[^"]*\bfounders?\b/.test(main), "no founder cards on the home page");
+  assert.ok(!/class="[^"]*\bfeatures\b/.test(main), "no feature list on the home page");
+});

@@ -1,1 +1,84 @@
-/* Page styles: home */
+/* Page styles: home
+   Page-only parts of the start page, taken from design/mockups/styles.css
+   (wordmark 369-382, claim 401-408, start page sections 413-430, responsive
+   626 / 652-653, desktop 658-659). The kit (components.css) already carries
+   .hero, .stage, .stage-cube, .hero-foot, .statement, .label, .link-arrow,
+   .on-light, .on-accent and the buttons; every value comes from tokens.css. */
+
+/* ---------- hero: word mark behind the cube, claim under the waterline ---------- */
+.wordmark {
+  position: absolute;
+  left: 50%;
+  top: clamp(0px, 1vw, 16px);
+  transform: translateX(-50%);
+  font-size: var(--fs-mark);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--mark);
+  white-space: nowrap;
+  hyphens: manual;
+  text-wrap: nowrap;
+}
+.claim {
+  font-size: var(--fs-14);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  hyphens: auto;
+}
+
+/* ---------- mission ---------- */
+.mission { padding-block: var(--section); background: var(--ground-deep); }
+.mission .label { margin-bottom: var(--s4); }
+
+/* ---------- EquiCube teaser band ---------- */
+.teaser-band .grid { align-items: center; }
+.teaser-band h2 {
+  font-size: var(--fs-xxl);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: var(--s2) 0 var(--s4);
+}
+.inline-list { display: flex; flex-wrap: wrap; gap: var(--s1) 0; margin-bottom: var(--s4); }
+.inline-list li {
+  font-size: var(--fs-12);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+.inline-list li + li::before { content: "·"; margin-inline: var(--s2); }
+.teaser-img { justify-self: end; width: 100%; max-width: 320px; }
+
+/* ---------- team teaser ---------- */
+.team-teaser { padding-block: var(--section); background: var(--ground-deep); }
+.team-teaser .statement { max-width: 22em; margin-bottom: var(--s3); }
+
+/* ---------- call to action ---------- */
+.cta-band { padding-block: clamp(72px, 10vw, 128px); }
+.cta-band h2 {
+  font-size: var(--fs-xxl);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  max-width: 15em;
+  margin-bottom: var(--s4);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  .teaser-img { justify-self: start; max-width: 260px; }
+}
+
+@media (max-width: 480px) {
+  .inline-list { flex-direction: column; }
+  .inline-list li + li::before { content: none; }
+}
+
+@media (min-width: 901px) {
+  .claim { font-size: var(--fs-17); }
+  .teaser-band h2::first-letter { text-transform: uppercase; }
+}
