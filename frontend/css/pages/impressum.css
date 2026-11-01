@@ -1,1 +1,10 @@
 /* Page styles: impressum */
+
+/* Heading of the § 25 MedienG disclosure block (design/mockups/styles.css:597) */
+.deflist-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-24);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.01em;
+  margin: var(--s6) 0 var(--s3);
+}

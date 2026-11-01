@@ -1,1 +1,14 @@
 /* Page styles: datenschutz */
+
+/* Closing note below the privacy list (design/mockups/styles.css:598) */
+.legal-note {
+  margin-top: var(--s5);
+  padding: var(--s3);
+  background: var(--ground);
+  color: var(--ink);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-17);
+  line-height: 1.6;
+  /* The note sits on the dark ground: restore the dark-ground focus colour. */
+  --focus: var(--accent);
+}
