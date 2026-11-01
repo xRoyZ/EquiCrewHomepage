@@ -1,0 +1,1 @@
+"""EquiCrew contact backend (FastAPI)."""
