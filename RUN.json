@@ -6,20 +6,89 @@
       "dir": "backend",
       "stack": "python",
       "kind": "server",
-      "install": [["${python}", "-m", "pip", "install", "-q", "-r", "requirements.txt"]],
-      "start": ["${python}", "-m", "uvicorn", "app.main:app", "--host", "127.0.0.1", "--port", "${PORT}"],
+      "install": [
+        [
+          "${python}",
+          "-m",
+          "pip",
+          "install",
+          "-q",
+          "-r",
+          "requirements.txt"
+        ]
+      ],
+      "start": [
+        "${python}",
+        "-m",
+        "uvicorn",
+        "app.main:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "${PORT}"
+      ],
       "port": 8000,
       "port_env": "PORT",
-      "health": {"path": "/api/health", "expect_status": [200]},
-      "test": [["${python}", "-m", "pytest"]],
+      "health": {
+        "path": "/api/health",
+        "expect_status": [
+          200
+        ]
+      },
+      "test": [
+        [
+          "${python}",
+          "-m",
+          "pytest"
+        ]
+      ],
       "env": {
-        "SMTP_HOST": {"external": true, "degraded_without": "POST /api/contact answers 503, everything else works"},
-        "SMTP_PORT": {"external": true, "degraded_without": "defaults to 587; without SMTP_HOST and SMTP_FROM POST /api/contact answers 503"},
-        "SMTP_USER": {"external": true, "degraded_without": "needed only when the SMTP server requires a login"},
-        "SMTP_PASSWORD": {"external": true, "degraded_without": "needed only when the SMTP server requires a login"},
-        "SMTP_FROM": {"external": true, "degraded_without": "POST /api/contact answers 503, everything else works"},
-        "CONTACT_RECIPIENT": {"dev": "office@equicrew.com"},
-        "FRONTEND_ORIGIN": {"dev": "${service:web.origin}"}
+        "SMTP_HOST": {
+          "external": true,
+          "degraded_without": "POST /api/contact answers 503, everything else works"
+        },
+        "SMTP_PORT": {
+          "external": true,
+          "degraded_without": "defaults to 587; without SMTP_HOST and SMTP_FROM POST /api/contact answers 503"
+        },
+        "SMTP_USER": {
+          "external": true,
+          "degraded_without": "needed only when the SMTP server requires a login"
+        },
+        "SMTP_PASSWORD": {
+          "external": true,
+          "degraded_without": "needed only when the SMTP server requires a login"
+        },
+        "SMTP_FROM": {
+          "external": true,
+          "degraded_without": "POST /api/contact answers 503, everything else works"
+        },
+        "CONTACT_RECIPIENT": {
+          "dev": "office@equicrew.com"
+        },
+        "FRONTEND_ORIGIN": {
+          "dev": "${service:web.origin}"
+        }
+      }
+    },
+    {
+      "name": "web",
+      "dir": "frontend",
+      "stack": "web-static",
+      "kind": "static",
+      "serve_dir": ".",
+      "test": [
+        [
+          "node",
+          "--test",
+          "tests/site.test.mjs",
+          "tests/dev-server.test.mjs"
+        ]
+      ],
+      "env": {
+        "API_BASE_URL": {
+          "dev": "${service:api.origin}"
+        }
       }
     }
   ]

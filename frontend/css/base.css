@@ -1,0 +1,181 @@
+/* Base: reset, typography, the layout frame every page shares (wrap, header,
+   waterline, footer) and visible focus. Mobile-first from 360 px; the desktop
+   header arrangement starts at 901 px as in design/mockups/styles.css.
+   Components (buttons, grid, sections, forms) live in components.css, page
+   layouts in css/pages/<page>.css. */
+
+/* ---------- reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scrollbar-color: oklch(0.45 0.03 195) var(--ground-deep);
+  overflow-x: clip;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: var(--fs-17);
+  font-weight: var(--fw-body);
+  line-height: 1.55;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+main { flex: 1 0 auto; }
+main:focus { outline: none; }
+img { display: block; max-width: 100%; height: auto; }
+ul, ol { list-style: none; padding: 0; }
+a { color: inherit; }
+button, input, textarea, select { font: inherit; color: inherit; }
+[hidden] { display: none !important; }
+::selection { background: var(--accent); color: var(--ground); }
+
+/* ---------- typography ---------- */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  line-height: 1.1;
+  overflow-wrap: break-word;
+}
+p, li { text-wrap: pretty; }
+p, li, dd { overflow-wrap: break-word; }
+figure, dl, dd { margin: 0; }
+
+/* ---------- focus ---------- */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Skip link: off screen until a keyboard user reaches it, then it floats over
+   the header in the form of the primary pill. */
+.skip-link {
+  position: absolute;
+  top: var(--s1);
+  left: var(--s1);
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 12px 28px;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: var(--ground);
+  font-size: var(--fs-14);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: none;
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* ---------- layout frame ---------- */
+.wrap { width: min(var(--wrap), 100% - 2 * var(--margin)); margin-inline: auto; }
+
+/* ---------- waterline ---------- */
+.waterline {
+  display: block;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: left center;
+  animation: waterline-draw var(--t-draw) var(--ease) both;
+}
+@keyframes waterline-draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* ---------- header and navigation ---------- */
+.site-header { position: relative; z-index: 20; background: var(--ground); }
+.header-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s1) var(--s3);
+  padding-block: var(--s3);
+}
+.brand {
+  font-family: var(--font-display);
+  font-size: var(--fs-24);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.site-nav ul { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: var(--r-pill);
+  font-size: var(--fs-14);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+.site-nav a[aria-current="page"] { background: var(--ink); color: var(--ground); }
+.site-nav a:active { background: var(--surface-hi); color: var(--ink); }
+@media (hover: hover) {
+  .site-nav a:hover { background: var(--surface-hi); color: var(--ink); }
+  .site-nav a[aria-current="page"]:hover { background: var(--ink); color: var(--ground); }
+}
+/* The menu button is shown by the navigation component (components.css) on
+   narrow screens; until then the links stay reachable as a wrapping row. */
+.nav-toggle { display: none; }
+
+/* ---------- footer ---------- */
+.site-footer {
+  background: var(--ground-foot);
+  padding-block: var(--s5);
+  font-size: var(--fs-14);
+  color: var(--muted);
+}
+.footer-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s1) var(--s4); }
+.footer-row p { color: var(--muted); }
+.footer-row a { color: var(--ink); }
+.footer-links { display: flex; flex-wrap: wrap; gap: 0 var(--s3); }
+.footer-links a, .footer-row .mail {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+@media (hover: hover) {
+  .footer-row a:hover { color: var(--accent); }
+}
+
+/* ---------- desktop ---------- */
+@media (min-width: 901px) {
+  .header-row { flex-wrap: nowrap; }
+  .site-nav ul { flex-wrap: nowrap; }
+  .footer-links { margin-left: auto; }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 1ms !important; }
+  .waterline { animation: none; transform: none; }
+}
