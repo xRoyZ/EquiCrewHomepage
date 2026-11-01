@@ -82,7 +82,8 @@
           "node",
           "--test",
           "tests/site.test.mjs",
-          "tests/dev-server.test.mjs"
+          "tests/dev-server.test.mjs",
+          "tests/nav.test.mjs"
         ]
       ],
       "env": {
