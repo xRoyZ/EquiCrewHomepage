@@ -1,0 +1,73 @@
+/* Design tokens of the approved mockup set (design/mockups/styles.css:53-115).
+   River-slate ground, one lime accent for the waterline and the primary action,
+   Bricolage Grotesque for display, Public Sans for text, Azeret Mono for figures.
+   Every colour, size, space, radius and duration of the site comes from here. */
+
+:root {
+  /* colour */
+  --ground: oklch(0.21 0.03 195);
+  --ground-deep: oklch(0.175 0.03 195);
+  --ground-foot: oklch(0.145 0.025 195);
+  --surface: oklch(0.27 0.03 195);
+  --surface-hi: oklch(0.33 0.03 195);
+  --ink: oklch(0.95 0.01 195);
+  --muted: oklch(0.70 0.02 195);
+  --mark: oklch(0.30 0.03 195);
+  --accent: oklch(0.87 0.16 118);
+  --band: oklch(0.94 0.008 195);
+  --bandink: oklch(0.24 0.03 195);
+  --band-muted: oklch(0.44 0.025 195);
+  --line: oklch(0.95 0.01 195 / 0.2);
+  --band-line: oklch(0.24 0.03 195 / 0.24);
+  --shadow-float: 0 18px 40px oklch(0.1 0.03 195 / 0.5);
+
+  /* type */
+  --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-text: "Public Sans", system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: "Azeret Mono", ui-monospace, "Cascadia Mono", Consolas, Menlo, monospace;
+  --fs-12: 12px;
+  --fs-14: 14px;
+  --fs-17: 17px;
+  --fs-24: 24px;
+  --fs-xl: clamp(24px, 3.4vw, 40px);
+  --fs-xxl: clamp(40px, 8vw, 72px);
+  --fs-mark: clamp(56px, 20vw, 280px);
+  --fw-light: 300;
+  --fw-body: 400;
+  --fw-bold: 800;
+
+  /* grid */
+  --cols: 12;
+  --gutter: 24px;
+  --wrap: 1120px;
+  --margin: 24px;
+  --measure: 640px;
+
+  /* spacing (8 px step) */
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 32px;
+  --s5: 48px;
+  --s6: 64px;
+  --s7: 96px;
+  --section: clamp(72px, 12vw, 144px);
+
+  /* radii */
+  --r-sm: 4px;
+  --r-sheet: 72px;
+  --r-pill: 999px;
+
+  /* motion */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --t-fast: 160ms;
+  --t-draw: 1600ms;
+
+  --focus: var(--accent);
+  color-scheme: dark;
+}
+
+/* Phones and tablets: sections sit closer together (design/mockups/styles.css:602). */
+@media (max-width: 900px) {
+  :root { --section: clamp(72px, 14vw, 112px); }
+}
