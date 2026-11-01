@@ -1,1 +1,108 @@
-/* Page styles: equicube */
+/* Page styles: equicube — the page-only parts of design/mockups/equicube.html
+   (product hero text, features list with the output figure, advantages list),
+   from design/mockups/styles.css:400-410, 457-485, 629-650. The kit
+   (components.css) supplies hero, stage, hero-foot, grid, section, on-deep,
+   on-light, label, lead and btn. Every value comes from tokens.css. */
+
+/* ---------- product hero text (styles.css:400, 409-410) ---------- */
+.hero-text { min-width: 0; }
+.hero-text h1 {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.015em;
+  margin-bottom: var(--s2);
+}
+.hero-text p { color: var(--muted); max-width: 52ch; }
+
+/* ---------- features (equicube.html:57-59, styles.css:457-473) ---------- */
+.on-deep { padding-top: var(--s7); }
+.on-deep > .wrap > .label { margin-bottom: var(--s4); }
+
+.features { margin: 0; padding: 0; list-style: none; }
+.features li {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-items: baseline;
+  padding-block: var(--s4);
+  border-top: 1px solid var(--line);
+}
+.features li:last-child { border-bottom: 1px solid var(--line); }
+.features .feature-name { grid-column: 1 / 8; min-width: 0; }
+.features .feature-name h3 { grid-column: auto; }
+.features h3 {
+  grid-column: 1 / 8;
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-light);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+.features p { grid-column: 8 / 13; color: var(--muted); font-size: var(--fs-17); }
+.features .figure {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--s1);
+  margin-top: var(--s1);
+}
+.figure .num {
+  font-family: var(--font-display);
+  font-size: var(--fs-xxl);
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.figure .unit {
+  font-size: var(--fs-14);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.figure abbr { text-decoration: none; }
+
+/* ---------- advantages (styles.css:474-485) ---------- */
+.advantages-head { max-width: var(--measure); margin-bottom: var(--s6); }
+.advantages-head h2 {
+  font-size: var(--fs-xxl);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.03em;
+  margin-bottom: var(--s3);
+}
+.advantages {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--s6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.advantages li {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  align-items: baseline;
+  padding-block: var(--s3);
+  border-top: 1px solid var(--band-line);
+}
+.advantages .no {
+  font-family: var(--font-mono);
+  font-size: var(--fs-14);
+  font-variant-numeric: tabular-nums;
+  color: var(--band-muted);
+}
+.advantages h3 { font-size: var(--fs-24); font-weight: var(--fw-bold); letter-spacing: -0.01em; min-width: 0; }
+
+/* ---------- tablets and phones (styles.css:630, 638-640) ---------- */
+@media (max-width: 900px) {
+  .hero-text { max-width: 100%; }
+  .features li { row-gap: var(--s1); }
+  .features h3, .features p, .features .feature-name { grid-column: 1 / -1; }
+  .advantages { grid-template-columns: 1fr; }
+}
+
+/* ---------- small phones (styles.css:649-650) ---------- */
+@media (max-width: 480px) {
+  .hero-text h1 { font-size: clamp(22px, 6.4vw, 40px); }
+  .hero-text h1, .hero-text p { overflow-wrap: anywhere; hyphens: auto; -webkit-hyphens: auto; }
+  .advantages h3 { overflow-wrap: anywhere; hyphens: auto; -webkit-hyphens: auto; }
+}
