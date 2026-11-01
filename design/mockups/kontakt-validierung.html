@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="screen-route" content="/kontakt">
+  <meta name="screen-state" content="Feldfehler nach Verlassen der Felder">
+  <meta name="theme-color" content="#0f2b2d">
+  <title>Kontakt – Eingabe prüfen | EquiCrew</title>
+  <meta name="description" content="smarte energie – fair verteilte KI – Innovative Heizlösungen von EquiCrew. Adresse, E-Mail, Telefon und Kontaktformular.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- serves: AC-01, AC-02, AC-06, AC-07, AC-08, AC-09, AC-10, AC-12, AC-13, AC-14, AC-21, AC-30, AC-39, AC-40 -->
+  <header class="site-header" data-od-id="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">EquiCrew</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon icon-open" data-icon="lucide/menu" aria-hidden="true"
+          ><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5h16M4 12h16M4 19h16"
+        /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon icon-close" data-icon="lucide/x" aria-hidden="true"
+          ><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"
+        /></svg>
+        <span>Menü</span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="index.html">Start</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="equicube.html">EquiCube</a></li>
+          <li><a href="kontakt.html" aria-current="page">Kontakt</a></li>
+          <li><a href="impressum.html">Impressum</a></li>
+        </ul>
+      </nav>
+    </div>
+    <span class="waterline" aria-hidden="true"></span>
+  </header>
+
+  <main class="contact">
+    <div class="wrap grid contact-grid">
+      <section class="col-1-4" data-od-id="contact-details">
+        <h1>Kontakt</h1>
+        <div class="contact-line">
+          <span class="label">Adresse</span>
+          <span class="value">Marktplatz 14, 4310 Mauthausen, Österreich</span>
+        </div>
+        <div class="contact-line">
+          <span class="label">E-Mail</span>
+          <a class="value" href="mailto:office@equicrew.com">office@equicrew.com</a>
+        </div>
+        <div class="contact-line">
+          <span class="label">Telefon</span>
+          <a class="value tnum" href="tel:+436504593129">+43 650 4593 129</a>
+        </div>
+      </section>
+
+      <section class="col-6-12" data-od-id="contact-form-region">
+        <div class="sheet" id="contact-sheet" data-od-id="contact-form-sheet">
+          <p class="sheet-note">Alle Felder sind Pflichtfelder.</p>
+          <div class="form-alert" id="form-alert" role="alert" tabindex="-1" hidden>
+            <span class="marker"
+              ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" data-icon="lucide/circle-alert" aria-hidden="true"
+                ><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  ><circle cx="12" cy="12" r="10"
+                  /><path d="M12 8v4m0 4h.01"
+                /></g
+              ></svg
+            ></span>
+            <p>Das hat leider nicht geklappt. Schreib uns direkt an <a href="mailto:office@equicrew.com">office@equicrew.com</a>.</p>
+          </div>
+          <form id="contact-form" novalidate action="/api/contact" method="post">
+            <div class="field-row">
+              <div class="field">
+                <label class="label" for="firstname">Vorname</label>
+                <input class="input" id="firstname" name="firstname" type="text" value="Maria" autocomplete="given-name" required aria-describedby="err-firstname">
+                <p class="field-error" id="err-firstname" hidden
+                  ><span class="marker"
+                    ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" data-icon="lucide/circle-alert" aria-hidden="true"
+                      ><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        ><circle cx="12" cy="12" r="10"
+                        /><path d="M12 8v4m0 4h.01"
+                      /></g
+                    ></svg
+                  ></span
+                  ><span class="msg"
+                  ></span
+                ></p>
+              </div>
+              <div class="field">
+                <label class="label" for="lastname">Nachname</label>
+                <input class="input" id="lastname" name="lastname" type="text" autocomplete="family-name" required aria-invalid="true" aria-describedby="err-lastname">
+                <p class="field-error" id="err-lastname"
+                  ><span class="marker"
+                    ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" data-icon="lucide/circle-alert" aria-hidden="true"
+                      ><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        ><circle cx="12" cy="12" r="10"
+                        /><path d="M12 8v4m0 4h.01"
+                      /></g
+                    ></svg
+                  ></span
+                  ><span class="msg">Bitte gib deinen Nachnamen ein.</span
+                ></p>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label" for="email">E-Mail</label>
+              <input class="input" id="email" name="email" type="email" autocomplete="email" required aria-invalid="true" value="maria.huber@" aria-describedby="err-email">
+              <p class="field-error" id="err-email"
+                ><span class="marker"
+                  ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" data-icon="lucide/circle-alert" aria-hidden="true"
+                    ><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      ><circle cx="12" cy="12" r="10"
+                      /><path d="M12 8v4m0 4h.01"
+                    /></g
+                  ></svg
+                ></span
+                ><span class="msg">Bitte gib eine gültige E-Mail-Adresse ein.</span
+              ></p>
+            </div>
+            <div class="field">
+              <label class="label" for="message">Nachricht</label>
+              <textarea class="input" id="message" name="message" rows="6" required aria-invalid="true" aria-describedby="err-message"></textarea>
+              <p class="field-error" id="err-message"
+                ><span class="marker"
+                  ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" data-icon="lucide/circle-alert" aria-hidden="true"
+                    ><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      ><circle cx="12" cy="12" r="10"
+                      /><path d="M12 8v4m0 4h.01"
+                    /></g
+                  ></svg
+                ></span
+                ><span class="msg">Bitte schreib uns eine Nachricht.</span
+              ></p>
+            </div>
+            <div class="hp" aria-hidden="true">
+              <label for="website">Webseite (bitte leer lassen)</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <p class="privacy-note">Wir verwenden Vorname, Nachname, E-Mail und Nachricht nur, um deine Anfrage zu beantworten. Mehr dazu in der <a class="link-plain" href="datenschutz.html">Datenschutzerklärung</a>.</p>
+            <div class="form-actions">
+              <button class="btn btn-primary" id="form-submit" type="submit" data-od-id="cta-send">Senden</button>
+            </div>
+          </form>
+        </div>
+        <div class="thanks" id="contact-thanks" role="status" data-od-id="contact-thanks" hidden>
+          <h2>Danke für deine Nachricht!</h2>
+          <p>Sie ist bei office@equicrew.com angekommen.</p>
+          <a class="btn btn-secondary" href="index.html">Zur Startseite</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" data-od-id="site-footer">
+    <div class="wrap footer-row">
+      <p>© <span data-year>2025</span> EquiCrew FlexCo</p>
+      <p>Marktplatz 14, 4310 Mauthausen</p>
+      <a class="mail" href="mailto:office@equicrew.com">office@equicrew.com</a>
+      <nav class="footer-links" aria-label="Rechtliches">
+        <a href="kontakt.html">Kontakt</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="site.js"></script>
+  <script src="contact-form.js"></script>
+</body>
+</html>
