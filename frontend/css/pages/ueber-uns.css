@@ -1,1 +1,57 @@
-/* Page styles: ueber-uns */
+/* Page styles: ueber-uns
+   Page-only parts of design/mockups/ueber-uns.html (photo-hero, story,
+   team-intro, founders, founder, founder-photo), values from
+   design/mockups/styles.css "team page" plus its mobile/desktop rules. */
+
+/* ---------- team photo ---------- */
+.photo-hero { position: relative; aspect-ratio: 21 / 9; overflow: hidden; background: var(--ground-deep); }
+.photo-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.photo-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, oklch(0.14 0.03 195 / 0.92) 0%, oklch(0.14 0.03 195 / 0.55) 32%, transparent 62%);
+}
+.photo-hero .wrap { position: absolute; left: 0; right: 0; bottom: var(--s5); z-index: 1; }
+.photo-hero h1 { font-size: var(--fs-xxl); font-weight: var(--fw-bold); letter-spacing: -0.03em; line-height: 1.1; }
+
+/* ---------- crew story ---------- */
+.story-text { max-width: var(--measure); }
+.story h2 { font-size: var(--fs-xl); font-weight: var(--fw-bold); letter-spacing: -0.015em; margin: var(--s6) 0 var(--s2); }
+.story p + p { margin-top: var(--s2); }
+.story .lead { margin-bottom: var(--s4); text-wrap: balance; }
+
+/* ---------- team ---------- */
+.team-intro { max-width: var(--measure); margin-bottom: var(--s6); }
+.team-intro h2 { font-size: var(--fs-xxl); font-weight: var(--fw-bold); letter-spacing: -0.03em; margin-bottom: var(--s3); }
+.founders { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter) var(--s4); align-items: end; }
+.founder { container-type: inline-size; }
+.founder-photo { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 50% 20%; border-radius: var(--r-sm); background: var(--band-line); }
+.founder--raised .founder-photo { aspect-ratio: auto; height: calc(100cqw + 48px); }
+.founder h3 { font-size: var(--fs-24); font-weight: var(--fw-bold); letter-spacing: -0.01em; margin-top: var(--s3); }
+.founder .label { margin-top: var(--s1); }
+.founder .mail { display: inline-block; margin-top: var(--s2); min-height: 24px; font-size: var(--fs-14); overflow-wrap: anywhere; }
+
+/* ---------- tablet and phone ---------- */
+@media (max-width: 900px) {
+  .photo-hero { aspect-ratio: 4 / 3; }
+  .photo-hero .wrap { bottom: var(--s3); }
+  .founders { grid-template-columns: 1fr; gap: var(--s5); align-items: start; }
+  .founder { display: grid; grid-template-columns: 120px minmax(0, 1fr); column-gap: var(--s3); align-items: start; }
+  .founder-photo, .founder--raised .founder-photo { grid-row: 1 / 4; width: 120px; height: 120px; aspect-ratio: 1; }
+  .founder h3 { margin-top: 0; }
+}
+
+@media (max-width: 480px) {
+  .founder .mail { grid-column: 1 / -1; }
+}
+
+/* ---------- desktop only ---------- */
+@media (min-width: 901px) {
+  .photo-hero img {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 16%, #000 84%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 16%, #000 84%, transparent 100%);
+    mask-composite: intersect;
+  }
+}
