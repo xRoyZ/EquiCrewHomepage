@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/pages/kontakt.css">
   <script type="module" src="../js/site.js"></script>
+  <script type="module" src="/js/contact-form.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
@@ -51,7 +52,115 @@
     <span class="waterline" aria-hidden="true"></span>
   </header>
 
-  <main id="main" tabindex="-1">
+  <main id="main" class="contact" tabindex="-1">
+    <div class="wrap grid contact-grid">
+      <section class="col-1-4" aria-labelledby="contact-title">
+        <h1 id="contact-title">Kontakt</h1>
+        <div class="contact-line">
+          <span class="label">Adresse</span>
+          <span class="value">Marktplatz 14, 4310 Mauthausen, Österreich</span>
+        </div>
+        <div class="contact-line">
+          <span class="label">E-Mail</span>
+          <a class="value" href="mailto:office@equicrew.com">office@equicrew.com</a>
+        </div>
+        <div class="contact-line">
+          <span class="label">Telefon</span>
+          <a class="value tnum" href="tel:+436504593129">+43 650 4593 129</a>
+        </div>
+      </section>
+
+      <section class="col-6-12 contact-form-region" aria-label="Kontaktformular">
+        <div class="sheet" id="contact-sheet">
+          <p class="sheet-note">Alle Felder sind Pflichtfelder.</p>
+          <div class="form-alert" id="form-alert" role="alert" tabindex="-1" hidden>
+            <span class="marker"
+              ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"
+                    ><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      ><circle cx="12" cy="12" r="10"
+                      /><path d="M12 8v4m0 4h.01"
+                    /></g
+                  ></svg></span
+            >
+            <p><span id="form-alert-reason">Das hat leider nicht geklappt.</span> Schreib uns direkt an <a href="mailto:office@equicrew.com">office@equicrew.com</a>.</p>
+          </div>
+          <form id="contact-form" novalidate action="/api/contact" method="post">
+            <div class="field-row">
+              <div class="field">
+                <label class="label" for="firstname">Vorname</label>
+                <input class="input" id="firstname" name="first_name" type="text" autocomplete="given-name" maxlength="100" required aria-describedby="err-firstname">
+                <p class="field-error" id="err-firstname" hidden
+                  ><span class="marker"
+                  ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"
+                    ><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      ><circle cx="12" cy="12" r="10"
+                      /><path d="M12 8v4m0 4h.01"
+                    /></g
+                  ></svg></span
+                  ><span class="msg"></span
+                ></p>
+              </div>
+              <div class="field">
+                <label class="label" for="lastname">Nachname</label>
+                <input class="input" id="lastname" name="last_name" type="text" autocomplete="family-name" maxlength="100" required aria-describedby="err-lastname">
+                <p class="field-error" id="err-lastname" hidden
+                  ><span class="marker"
+                  ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"
+                    ><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      ><circle cx="12" cy="12" r="10"
+                      /><path d="M12 8v4m0 4h.01"
+                    /></g
+                  ></svg></span
+                  ><span class="msg"></span
+                ></p>
+              </div>
+            </div>
+            <div class="field">
+                <label class="label" for="email">E-Mail</label>
+                <input class="input" id="email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="err-email">
+                <p class="field-error" id="err-email" hidden
+                  ><span class="marker"
+                  ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"
+                    ><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      ><circle cx="12" cy="12" r="10"
+                      /><path d="M12 8v4m0 4h.01"
+                    /></g
+                  ></svg></span
+                  ><span class="msg"></span
+                ></p>
+              </div>
+            <div class="field">
+                <label class="label" for="message">Nachricht</label>
+                <textarea class="input" id="message" name="message" rows="6" maxlength="5000" required aria-describedby="err-message"></textarea>
+                <p class="field-error" id="err-message" hidden
+                  ><span class="marker"
+                  ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"
+                    ><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      ><circle cx="12" cy="12" r="10"
+                      /><path d="M12 8v4m0 4h.01"
+                    /></g
+                  ></svg></span
+                  ><span class="msg"></span
+                ></p>
+              </div>
+            <div class="hp" aria-hidden="true">
+              <label for="website">Webseite (bitte leer lassen)</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <p class="privacy-note">Wir verwenden Vorname, Nachname, E-Mail und Nachricht nur, um deine Anfrage zu beantworten. Mehr dazu in der <a class="link-plain" href="/datenschutz/">Datenschutzerklärung</a>.</p>
+            <div class="form-actions">
+              <button class="btn btn-primary" id="form-submit" type="submit">Senden</button>
+            </div>
+            <p class="sr-only" id="form-status" aria-live="polite"></p>
+          </form>
+        </div>
+        <div class="thanks" id="contact-thanks" role="status" hidden>
+          <h2 tabindex="-1">Danke für deine Nachricht!</h2>
+          <p>Sie ist bei office@equicrew.com angekommen.</p>
+          <a class="btn btn-secondary" href="/">Zur Startseite</a>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer class="site-footer">

@@ -1,1 +1,11 @@
-/* Page styles: kontakt */
+/* Page styles: kontakt
+   Everything the contact page shows comes from the kit (components.css:
+   contact, contact-line, sheet, field, form-alert, privacy-note, thanks).
+   Only page-specific details live here. */
+
+/* The script moves focus to the send-error alert and to the thanks heading
+   so screen readers and keyboard users land on the new state; that
+   programmatic focus needs no ring, keyboard focus keeps the kit's. */
+.contact .form-alert:focus:not(:focus-visible),
+.contact .thanks h2:focus:not(:focus-visible) { outline: none; }
+
